@@ -1,45 +1,64 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { useState, useEffect } from 'react';
+import { storage } from './utils';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [words, setWords] = useState([]);
+
+  console.log('This is the popup??');
+
+  const getStoredWords = async () => {
+    const { words } = await storage.get('words');
+    console.log('Stored words:', words);
+    setWords(words);
+  };
+
+  useEffect(() => {
+    getStoredWords();
+  }, []);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+      <h3>Word Vault</h3>
+      <WordFilter />
+      <WordSortOption />
+      <WordList words={words} />
     </div>
-  )
+  );
 }
 
-export default App
+function WordFilter() {
+  return (
+    <div className="word-filter">
+      <label htmlFor="word-filter-input">Search</label>
+      <input type="text" id="word-filter-input" />
+    </div>
+  );
+}
+
+function WordList({ words }) {
+  return (
+    <div className="word-list">
+      {words.length > 0 &&
+        words.map((word) => <WordItem key={word.id} word={word} />)}
+    </div>
+  );
+}
+
+function WordItem({ word }) {
+  return <p className="word-item">{word.text}</p>;
+}
+
+function WordSortOption() {
+  return (
+    <div className="word-sort">
+      <label htmlFor="word-sort-select">Sort</label>
+      <select id="word-sort-select">
+        <option value="date">Date</option>
+        <option value="name">Name</option>
+      </select>
+    </div>
+  );
+}
+
+export default App;

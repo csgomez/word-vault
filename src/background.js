@@ -1,15 +1,67 @@
-chrome.contextMenus.onClicked.addListener(handleContextMenuClick);
+const storage = chrome.storage.local;
+
+const initialWords = [
+  {
+    id: 'dfc7e4bc-fe31-46ff-a805-06dfcef89dfa',
+    text: 'unique',
+    dateCreated: Date.now(),
+  },
+  {
+    id: 'e0bac9c9-7a5c-42c3-83c8-189f0dd361ed',
+    text: 'superfluous',
+    dateCreated: Date.now(),
+  },
+  {
+    id: '4368f2ba-e0ec-4280-8578-ef07f534c4a9',
+    text: 'parenthesis',
+    dataCreated: Date.now(),
+  },
+];
 
 const VOCAB_VAULT_CONTEXT_MENU_ID = '__VOCAB_VAULT_CONTEXT_MENU_ID';
+chrome.contextMenus.onClicked.addListener(handleContextMenuClick);
+chrome.runtime.onInstalled.addListener(createContextMenuItem);
+chrome.runtime.onInstalled.addListener((details) => {
+  initSettings();
+  initWordDatabase();
+});
 
-function handleContextMenuClick(info, tab) {
-  console.log('The context menu was clicked.');
-  console.log(info);
-  console.log(tab);
+showAllStoredItems();
+
+async function showAllStoredItems() {
+  const result = await storage.get(null);
+  console.log(result);
 }
 
-chrome.runtime.onInstalled.addListener(function () {
-  let thing = chrome.contextMenus.create(
+function initSettings() {
+  storage.set({ settings: { trim: true } });
+}
+
+async function initWordDatabase() {
+  console.log('Initializing word database...');
+  try {
+    const storedWords = await storage.get({ words: [] });
+    console.log('storedWords:', storedWords);
+
+    if (storedWords.words.length === 0) {
+      await storage.set({ words: initialWords });
+    }
+
+    console.log('Finished initializing word database!');
+  } catch (err) {
+    console.error('Error seeding database:', err);
+  }
+}
+
+function handleContextMenuClick(info, tab) {
+  console.log(info);
+  console.log(tab);
+
+  saveNewWord(info.selectionText, info, tab);
+}
+
+function createContextMenuItem() {
+  chrome.contextMenus.create(
     {
       title: 'Save selection [Vocab Vault]',
       contexts: ['selection'],
@@ -24,6 +76,23 @@ chrome.runtime.onInstalled.addListener(function () {
       }
     }
   );
+}
 
-  console.log('Thing:', thing);
-});
+async function saveNewWord(text, info, tab) {
+  try {
+    const { words } = await storage.get('words');
+    const newWord = {
+      id: crypto.randomUUID(),
+      text,
+      dateCreated: Date.now(),
+      pageUrl: info.pageUrl,
+      tabTitle: tab.title,
+    };
+
+    words.push(newWord);
+
+    await storage.set({ words: words });
+  } catch (err) {
+    console.error('Error saving new word:', err);
+  }
+}
