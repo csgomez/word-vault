@@ -5,16 +5,15 @@ const initialWords = [
     id: 'dfc7e4bc-fe31-46ff-a805-06dfcef89dfa',
     text: 'unique',
     dateCreated: Date.now(),
+    pageUrl: 'https://www.merriam-webster.com/dictionary/unique',
+    tabTitle: 'Unique Definition & Meaning - Merriam-Webster',
   },
   {
     id: 'e0bac9c9-7a5c-42c3-83c8-189f0dd361ed',
     text: 'superfluous',
     dateCreated: Date.now(),
-  },
-  {
-    id: '4368f2ba-e0ec-4280-8578-ef07f534c4a9',
-    text: 'parenthesis',
-    dataCreated: Date.now(),
+    pageUrl: 'https://en.m.wiktionary.org/wiki/superfluous',
+    tabTitle: 'superfluous - Wiktionary, the free dictionary',
   },
 ];
 
