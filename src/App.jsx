@@ -4,24 +4,20 @@ import './App.css';
 import { useWords } from './hooks/useWords';
 
 function App() {
-  const { words, setWords } = useWords();
-
   return (
     <div className="App">
       <h3>Word Vault</h3>
       <WordFilter />
       <WordSortOption />
-      <WordList words={words} />
+      <WordList />
     </div>
   );
 }
 
 function WordFilter() {
-  const [filterInputText, setFilterInputText] = useState('');
   const { filter, setFilter } = useWords();
 
   const handleFilterChange = (e) => {
-    setFilterInputText(e.target.value);
     setFilter(e.target.value);
   };
 
@@ -31,15 +27,15 @@ function WordFilter() {
       <input
         type="text"
         id="word-filter-input"
-        value={filterInputText}
+        value={filter}
         onChange={handleFilterChange}
       />
     </div>
   );
 }
 
-function WordList({ words }) {
-  const { filteredWords } = useWords();
+function WordList() {
+  const { filteredWords, sortBy } = useWords();
 
   return (
     <div className="word-list">
@@ -54,10 +50,16 @@ function WordItem({ word }) {
 }
 
 function WordSortOption() {
+  const { sortBy, setSortBy } = useWords();
+
+  const handleSortChange = (e) => {
+    setSortBy(e.target.value);
+  };
+
   return (
     <div className="word-sort">
       <label htmlFor="word-sort-select">Sort</label>
-      <select id="word-sort-select">
+      <select id="word-sort-select" value={sortBy} onChange={handleSortChange}>
         <option value="date">Date</option>
         <option value="name">Name</option>
       </select>
