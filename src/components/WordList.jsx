@@ -3,7 +3,7 @@ import { useWords } from '../hooks/useWords';
 import WordItem from './WordItem';
 
 const WordList = () => {
-  const { filteredWords, sortBy } = useWords();
+  const { filteredWords } = useWords();
 
   if (filteredWords.length === 0) {
     return <p>No words...</p>;

@@ -1,19 +1,25 @@
 import dayjs from 'dayjs';
-import { Accordion } from 'react-bootstrap';
+import { Accordion, Button } from 'react-bootstrap';
 
 const WordItem = ({ word }) => {
   const date = dayjs(word.dateCreated).format('MMM DD, YYYY, H:MM A');
-  console.log(word);
 
   return (
-    <Accordion.Item eventKey={word.id}>
-      <Accordion.Header>{word.text}</Accordion.Header>
+    <Accordion.Item className="word-item" eventKey={word.id}>
+      <Accordion.Header className="fw-semibold">{word.text}</Accordion.Header>
       <Accordion.Body>
-        <p>Date: {date}</p>
         <p>
-          Url: <a href={word.pageUrl}>{word.pageUrl}</a>
+          <strong>Date:</strong> {date}
         </p>
-        <p>Tab Title: {word.tabTitle}</p>
+        <p>
+          <strong>URL:</strong> <a href={word.pageUrl}>{word.pageUrl}</a>
+        </p>
+        <p>
+          <strong>Tab Title:</strong> {word.tabTitle}
+        </p>
+        <p>
+          <strong>Notes:</strong>
+        </p>
       </Accordion.Body>
     </Accordion.Item>
   );

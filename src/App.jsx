@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h3>Word Vault</h3>
+      <h2>Word Vault</h2>
       <WordFilter />
       <WordSortOption />
       <WordList />
