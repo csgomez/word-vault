@@ -1,21 +1,10 @@
 import { useState, useEffect } from 'react';
 import { storage } from './utils';
 import './App.css';
+import { useWords } from './hooks/useWords';
 
 function App() {
-  const [words, setWords] = useState([]);
-
-  console.log('This is the popup??');
-
-  const getStoredWords = async () => {
-    const { words } = await storage.get('words');
-    console.log('Stored words:', words);
-    setWords(words);
-  };
-
-  useEffect(() => {
-    getStoredWords();
-  }, []);
+  const { words, setWords } = useWords();
 
   return (
     <div className="App">
@@ -28,19 +17,34 @@ function App() {
 }
 
 function WordFilter() {
+  const [filterInputText, setFilterInputText] = useState('');
+  const { filter, setFilter } = useWords();
+
+  const handleFilterChange = (e) => {
+    setFilterInputText(e.target.value);
+    setFilter(e.target.value);
+  };
+
   return (
     <div className="word-filter">
       <label htmlFor="word-filter-input">Search</label>
-      <input type="text" id="word-filter-input" />
+      <input
+        type="text"
+        id="word-filter-input"
+        value={filterInputText}
+        onChange={handleFilterChange}
+      />
     </div>
   );
 }
 
 function WordList({ words }) {
+  const { filteredWords } = useWords();
+
   return (
     <div className="word-list">
-      {words.length > 0 &&
-        words.map((word) => <WordItem key={word.id} word={word} />)}
+      {filteredWords.length > 0 &&
+        filteredWords.map((word) => <WordItem key={word.id} word={word} />)}
     </div>
   );
 }
