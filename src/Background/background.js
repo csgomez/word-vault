@@ -53,9 +53,6 @@ async function initWordDatabase() {
 }
 
 function handleContextMenuClick(info, tab) {
-  console.log(info);
-  console.log(tab);
-
   saveNewWord(info.selectionText, info, tab);
 }
 
