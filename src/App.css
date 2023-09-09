@@ -1,3 +1,7 @@
+:root {
+  font-size: 14px;
+}
+
 .App {
   width: 300px;
   height: 350px;
@@ -29,6 +33,10 @@
 }
 
 .word-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   padding-left: 1rem;
   padding-right: 1rem;
 }
