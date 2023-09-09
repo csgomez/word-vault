@@ -3,7 +3,7 @@
   "name": "Word Vault",
   "version": "1.0.0",
   "action": { "default_popup": "index.html" },
-  "permissions": ["contextMenus", "storage"],
+  "permissions": ["contextMenus", "storage", "tabs"],
   "background": {
     "service_worker": "src/Background/background.js",
     "type": "module"
