@@ -24,6 +24,10 @@ const WordItem = ({ word }) => {
     setShowDeleteConfirmation(false);
   };
 
+  const handleDeleteWordItem = () => {
+    // TODO: Implement
+  };
+
   const actionsStyle = {
     display: showDeleteConfirmation ? 'none' : '',
   };
@@ -61,7 +65,9 @@ const WordItem = ({ word }) => {
         </div>
         <div className="delete-confirmation" style={deleteConfirmationStyle}>
           Are you sure you want to delete?
-          <Button variant="danger">Yes</Button>
+          <Button variant="danger" onClick={handleDeleteWordItem}>
+            Yes
+          </Button>
           <Button variant="secondary" onClick={handleCancelDelete}>
             Cancel
           </Button>
