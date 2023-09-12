@@ -32,10 +32,19 @@ export const WordsProvider = ({ children }) => {
     setWords(words);
   };
 
+  // updates the in-memory react state variable *and* the local storage
+  async function updateWords(newWords) {
+    try {
+      await storage.set({ words: newWords });
+      setWords(newWords);
+    } catch (err) {
+      console.error('Error updating words:', err);
+    }
+  }
+
   const deleteWord = async (wordId) => {
     let newWords = words.filter((word) => word.id !== wordId);
-    await storage.set({ words: newWords });
-    setWords(newWords);
+    await updateWords(newWords);
   };
 
   useEffect(() => {
