@@ -49,7 +49,7 @@ const WordItemBody = ({ word, onEnterEditMode }) => {
         <strong>Tab Title:</strong> {word.tabTitle}
       </p>
       <p>
-        <strong>Notes:</strong>
+        <strong>Notes:</strong> {word.note}
       </p>
       <div className="word-item-actions" style={actionsStyle}>
         <Button variant="outline-danger" onClick={handleDeleteClick}>

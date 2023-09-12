@@ -7,6 +7,7 @@ const initialWords = [
     dateCreated: Date.now(),
     pageUrl: 'https://www.merriam-webster.com/dictionary/unique',
     tabTitle: 'Unique Definition & Meaning - Merriam-Webster',
+    note: 'This is the first word saved.',
   },
   {
     id: 'e0bac9c9-7a5c-42c3-83c8-189f0dd361ed',
@@ -14,6 +15,7 @@ const initialWords = [
     dateCreated: Date.now(),
     pageUrl: 'https://en.m.wiktionary.org/wiki/superfluous',
     tabTitle: 'superfluous - Wiktionary, the free dictionary',
+    note: 'This note is superfluous.',
   },
 ];
 
@@ -83,6 +85,7 @@ async function saveNewWord(text, info, tab) {
       dateCreated: Date.now(),
       pageUrl: info.pageUrl,
       tabTitle: tab.title,
+      note: '',
     };
 
     words.push(newWord);

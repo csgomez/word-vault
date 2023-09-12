@@ -23,7 +23,7 @@ const WordItemBodyEdit = ({ word, onExitEditMode }) => {
         <strong>Tab Title:</strong> {word.tabTitle}
       </p>
       <p>
-        <strong>Notes:</strong>
+        <strong>Notes:</strong> {word.note}
       </p>
       <Button variant="secondary" onClick={onExitEditMode}>
         Cancel
