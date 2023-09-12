@@ -27,7 +27,6 @@ const WordItem = ({ word }) => {
   };
 
   const handleDeleteWordItem = async () => {
-    // TODO: Finish implementing (especially in the useWords hook)
     await deleteWord(word.id);
   };
 
