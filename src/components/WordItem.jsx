@@ -67,7 +67,7 @@ const WordItem = ({ word }) => {
           </Button>{' '}
         </div>
         <div className="delete-confirmation" style={deleteConfirmationStyle}>
-          Are you sure you want to delete?
+          <p>Are you sure you want to delete?</p>
           <Button variant="danger" onClick={handleDeleteWordItem}>
             Yes
           </Button>

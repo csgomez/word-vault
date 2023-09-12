@@ -37,3 +37,28 @@
   padding-left: 1rem;
   padding-right: 1rem;
 }
+
+/* BEGIN DELETE CONFIRMATION PROMPT */
+/* TODO: Refactor this using "nice" CSS */
+.delete-confirmation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.delete-confirmation > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.delete-confirmation > *:nth-child(1) {
+  flex-basis: 100%;
+}
+
+.delete-confirmation > *:nth-child(2),
+.delete-confirmation > *:nth-child(3) {
+  flex-basis: calc(50% - 10px);
+  margin-left: 5px;
+  margin-right: 5px;
+}
+/* END DELETE CONFIRMATION PROMPT */
