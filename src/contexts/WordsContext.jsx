@@ -7,6 +7,7 @@ export const WordsProvider = ({ children }) => {
   const [words, setWords] = useState([]);
   const [filter, setFilter] = useState('');
   const [sortBy, setSortBy] = useState('date');
+
   const sortedWords = words.toSorted((wordA, wordB) => {
     switch (sortBy) {
       case 'date':
@@ -20,6 +21,7 @@ export const WordsProvider = ({ children }) => {
         return 0;
     }
   });
+
   const filteredWords = sortedWords.filter((word) =>
     word.text.includes(filter)
   );
@@ -28,6 +30,12 @@ export const WordsProvider = ({ children }) => {
     const { words } = await storage.get('words');
     console.log('Stored words:', words);
     setWords(words);
+  };
+
+  const deleteWord = async (wordId) => {
+    let newWords = words.filter((word) => word.id !== wordId);
+    await storage.set({ words: newWords });
+    setWords(newWords);
   };
 
   useEffect(() => {
@@ -39,6 +47,7 @@ export const WordsProvider = ({ children }) => {
       value={{
         words,
         setWords,
+        deleteWord,
         filteredWords,
         filter,
         setFilter,

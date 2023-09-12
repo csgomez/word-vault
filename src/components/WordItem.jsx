@@ -1,8 +1,10 @@
 import dayjs from 'dayjs';
 import { useState } from 'react';
 import { Accordion, Button } from 'react-bootstrap';
+import { useWords } from '../hooks/useWords';
 
 const WordItem = ({ word }) => {
+  const { deleteWord } = useWords();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const date = dayjs(word.dateCreated).format('MMM DD, YYYY, H:MM A');
@@ -24,8 +26,9 @@ const WordItem = ({ word }) => {
     setShowDeleteConfirmation(false);
   };
 
-  const handleDeleteWordItem = () => {
-    // TODO: Implement
+  const handleDeleteWordItem = async () => {
+    // TODO: Finish implementing (especially in the useWords hook)
+    await deleteWord(word.id);
   };
 
   const actionsStyle = {
