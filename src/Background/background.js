@@ -22,10 +22,7 @@ const initialWords = [
 const VOCAB_VAULT_CONTEXT_MENU_ID = '__VOCAB_VAULT_CONTEXT_MENU_ID';
 chrome.contextMenus.onClicked.addListener(handleContextMenuClick);
 chrome.runtime.onInstalled.addListener(createContextMenuItem);
-chrome.runtime.onInstalled.addListener((details) => {
-  initSettings();
-  initWordDatabase();
-});
+chrome.runtime.onInstalled.addListener(handleOnInstalled);
 
 showAllStoredItems();
 
@@ -94,4 +91,28 @@ async function saveNewWord(text, info, tab) {
   } catch (err) {
     console.error('Error saving new word:', err);
   }
+}
+
+async function handleOnInstalled(details) {
+  const reason = details.reason;
+
+  if (reason === chrome.runtime.OnInstalledReason.UPDATE) {
+    handleOnUpdate();
+  }
+
+  if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
+    console.log('Handling install...');
+    handleOnInstall();
+  }
+}
+
+function handleOnInstall() {
+  console.log('Handling install...');
+
+  initSettings();
+  initWordDatabase();
+}
+
+async function handleOnUpdate() {
+  console.log('Handling update...');
 }
