@@ -1,3 +1,1 @@
-import 'http:/localhost:3000/@vite/env';
-import 'http://localhost:3000/crx-client-worker';
-import 'http://localhost:3000/src/Background/background.js';
+import './assets/background.js.2381b831.js';
