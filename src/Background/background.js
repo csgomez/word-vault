@@ -58,14 +58,14 @@ function handleContextMenuClick(info, tab) {
 function createContextMenuItem() {
   chrome.contextMenus.create(
     {
-      title: 'Save selection [Vocab Vault]',
+      title: 'Save selection [Word Vault]',
       contexts: ['selection'],
       id: VOCAB_VAULT_CONTEXT_MENU_ID,
     },
     function () {
       if (chrome.runtime.lastError) {
         console.log(
-          'Error creating context menu for Vocab Vault:',
+          'Error creating context menu for Word Vault:',
           chrome.runtime.lastError.message
         );
       }
