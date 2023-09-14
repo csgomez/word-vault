@@ -1,6 +1,6 @@
 <!-- GETTING STARTED -->
 
-## About The Project
+## About Word Vault
 
 ### The extension
 
