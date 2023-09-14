@@ -4,7 +4,7 @@ import { useWords } from '../hooks/useWords';
 import { Button } from 'react-bootstrap';
 
 const WordItemBody = ({ word }) => {
-  const { deleteWord } = useWords();
+  const { deleteWord, editWord } = useWords();
 
   const [editMode, setEditMode] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -34,6 +34,15 @@ const WordItemBody = ({ word }) => {
 
   const handleDeleteWordItem = async () => {
     await deleteWord(word.id);
+  };
+
+  const handleEditWordItem = async () => {
+    const editedWord = {
+      ...word,
+      note: noteInput,
+    };
+    await editWord(editedWord);
+    exitEditMode();
   };
 
   return (
@@ -73,7 +82,9 @@ const WordItemBody = ({ word }) => {
           <Button variant="secondary" onClick={exitEditMode}>
             Cancel
           </Button>
-          <Button variant="success">Save</Button>
+          <Button variant="success" onClick={handleEditWordItem}>
+            Save
+          </Button>
         </div>
       ) : showDeleteConfirmation ? (
         <div className="delete-confirmation">

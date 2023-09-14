@@ -47,6 +47,13 @@ export const WordsProvider = ({ children }) => {
     await updateWords(newWords);
   };
 
+  const editWord = async (editedWord) => {
+    const newWords = words.map((word) =>
+      word.id === editedWord.id ? editedWord : word
+    );
+    await updateWords(newWords);
+  };
+
   useEffect(() => {
     getStoredWords();
   }, []);
@@ -57,6 +64,7 @@ export const WordsProvider = ({ children }) => {
         words,
         setWords,
         deleteWord,
+        editWord,
         filteredWords,
         filter,
         setFilter,
