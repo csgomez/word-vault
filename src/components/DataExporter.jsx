@@ -1,5 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { arrayToPrettyJSON, storage } from '../utils';
+import dayjs from 'dayjs';
 
 const DataExporter = () => {
   const handleExportClick = async () => {
@@ -8,7 +9,8 @@ const DataExporter = () => {
       const wordData = data.words;
 
       const formatedWordData = arrayToPrettyJSON(wordData);
-      downloadJSON(formatedWordData, 'WordVault-data.json');
+      const filenameDate = dayjs(Date.now()).format('MM-DD-YYYY_HHMMss');
+      downloadJSON(formatedWordData, `WordVault-data_${filenameDate}.json`);
     } catch (err) {
       console.error('Error exporting data:', err);
     }
