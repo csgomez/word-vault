@@ -9,7 +9,7 @@ const WordItemBody = ({ word }) => {
   const [editMode, setEditMode] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [noteInput, setNoteInput] = useState(word.note);
-  const date = dayjs(word.dateCreated).format('MMM DD, YYYY, H:MM A');
+  const date = dayjs(word.dateCreated).format('MMM DD, YYYY, h:MM A');
 
   const openUrlInNewTab = (e) => {
     chrome.tabs.create({ url: e.target.href });
