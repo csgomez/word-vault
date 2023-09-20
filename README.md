@@ -24,7 +24,7 @@ You can install this extension this extension two ways. The first is the easiest
 
 1. Clone the repo
    ```sh
-     git clone https://github.com/csgomez/word-vault.git
+   git clone https://github.com/csgomez/word-vault.git
    ```
 2. Install dependencies
    ```sh
