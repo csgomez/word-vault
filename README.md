@@ -64,3 +64,7 @@ After installing the extension, it'll likely be hidden within the 'Extensions' i
 #### Using the toolbar popup
 
 Just click on the Word Vault icon and you should see all your saved words!
+
+## Special Thanks
+
+- [CRXJS](https://github.com/crxjs/chrome-extension-tools) - Chrome extension bundler that made starting and developing this project incredibly easy.
