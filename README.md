@@ -12,15 +12,9 @@ I can't count how many times I'd come across a word online that I found interest
 
 ## Getting the extension
 
-You can install this extension this extension two ways. The first is the easiest - just download this repo as a zip, extract, and drag-and-drop. The second is by manually cloning the project and building the extension yourself. Either method is fine, but the second might be more up to date.
+For now, the only method of getting this extension is by downloading the repo and building it yourself. In the future, a prebuilt version will be available.
 
-### Method 1 - Download Zip
-
-1. Download this repo as a zip https://github.com/csgomez/word-vault/archive/refs/heads/main.zip
-2. Extract the zip file anywhere you like (there should only be a single folder inside)
-3. Verify that there's a folder named `dist` inside the extracted folder.
-
-### Method 2 - Manual
+### Instructions
 
 1. Clone the repo
    ```sh
@@ -36,9 +30,9 @@ You can install this extension this extension two ways. The first is the easiest
    ```
 4. Verify that you have a directory named `dist` at the root of the project.
 
-## Installation
+## Installing the extension onto Chrome
 
-Once you have the extension downloaded, all you need to do is install it.
+Once you have the Word Vault extension downloaded, all you need to do is install it.
 
 1. Open Chrome and head to [chrome://extensions/](chrome://extensions/)
 2. Enable developer mode by toggling the option at the top right
