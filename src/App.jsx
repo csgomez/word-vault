@@ -3,6 +3,7 @@ import WordSortOption from './components/WordSortOption';
 import WordList from './components/WordList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import DataExporter from './components/DataExporter';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <WordFilter />
       <WordSortOption />
       <WordList />
+      <DataExporter />
     </div>
   );
 }
